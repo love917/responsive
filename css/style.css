@@ -1,0 +1,581 @@
+@charset "UTF-8";
+/* font-family: "Nanum Gothic", sans-serif; */
+/* font-family: "Nanum Brush Script", cursive; */
+
+/* 전체 레이아웃 */
+body{
+    background: url(https://png.pngtree.com/thumb_back/fh260/back_our/20190625/ourmid/pngtree-decadent-wall-poster-background-picture-image_262527.jpg)repeat-x center top;
+    background-size: 100% 327px;
+}
+#header{height: 327px;}
+#nav{background-color: #f6fdff;}
+#footer{border-top: 1px solid #dbdbdb;}
+
+/* container - 가운데 영역 */
+.container{width: 1200px; margin: 0 auto;}
+
+/* 콘텐츠 영역 */
+#contents{}
+#contents .container{
+    display: flex;
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    box-sizing: border-box;}
+#contents .ir{}
+#cont_left{width: 250px;}
+#cont_center{
+    width: calc(100% - 500px);
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    box-sizing: border-box;
+}
+#cont_right{width: 250px;}
+
+/* -------------------------------------- */
+/* header */
+.header{}
+.header_menu{
+    padding-top: 8px;
+    display:flex; gap: 10px; justify-content: flex-end;
+}
+.header_menu a{color: #fff;}
+.header_menu a:hover{color: #ccc;}
+
+.header_tit{text-align: center;}
+/* inline-block요소에게 가운데 정렬을 시킬수 없어서, 부모인 block요소한테 줘야함 */
+.header_tit h1{
+    color: #fff;
+    background-color: #51b0bc;
+    font-size: 25px; font-weight: 800;
+    display: inline-block; /* 배경색이 글자의 크기만큼 차지하게 하려고 */
+    padding: 5px 30px;
+    margin-top: 55px;
+    transition: 0.3s ease-in-out;/* ease in-out : 처음과 끝을 느리게 */
+}
+.header_tit h1:hover{
+    box-shadow: inset 173px 0px #258fac,/* x y값은 반드시 줘야함 */
+                inset -175px 0px #258fac; 
+}
+.header_tit a{
+    display: inline-block;
+    background-color: #B7E986;
+    font-size: 18px; color: #3F7D00; 
+    padding: 10px 20px;
+    transition: 0.3s ease-in-out;
+    margin-top: -7px;
+    border-radius: 10px;
+}
+.header_tit a:hover{
+    color: #fff;
+    box-shadow: inset 84px 0px #86D03C,
+                inset -84px 0px #86D03C;
+}
+
+.header_icon{margin-top: 55px;}
+.header_icon ul{display: flex; gap: 10px;justify-content: center;}
+.header_icon li{position: relative;}
+.header_icon li a{
+    display: inline-block;
+    color: #fff; font-size: 35px;
+    background-color: #3192bf;
+    width: 60px;height: 60px;
+    border-radius: 50%;
+    text-align: center;
+}
+.header_icon li a i{line-height: 60px;}
+.header_icon li a span{
+    position: absolute; top: -40px;left: 50%; 
+    /* top -40px값을 준 이유는 위에서 밑으로 내리게 하기 위해 조금 올림 */
+    transform: translateX(-50%);
+    font-size: 12px;
+    background-color: #3192bf;
+    border-radius: 5px 0 5px 0;
+    padding: 2px 6px;
+    transition: 0.3s;
+    opacity: 0;
+}
+.header_icon li:hover a span{top: -30px; opacity: 1;}
+.header_icon li a span::before{
+    /* 말풍선의 삼각형을 border을 이용해서 만듦 */
+    content: "";
+    position: absolute; left: 40%;bottom: -10px;
+    border: 5px solid #3192bf;
+    border-left: 5px solid transparent;/* transparent:투명하게 만듬 */
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+/* nav */
+.nav{padding: 25px 0;display: none;}
+.nav>div{width: 40%; float: left;}
+/* slideToggle에 의해 css설정이 깨져버림-수정방법 : float:left; */
+
+.nav>div:last-child{width: 20%;}
+.nav>div h3{
+    font-size: 18px; font-weight: bold;
+    color: #25a2d0;
+    margin-bottom: 4px;}
+.nav>div ul{display: flex; flex-wrap: wrap;}
+.nav>div ul li{width: 50%; padding-left: 10px; position: relative;}
+.nav>div ul li::before{
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background-color: #25a2d0;
+    box-sizing: border-box;
+}
+
+.nav>div ul li a{position: relative;}
+.nav>div ul li a::after{
+    content: "";
+    position: absolute; 
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    background-color: #25a2d0;
+    transition: 0.2s;
+}
+.nav>div ul li:hover a::after{width: 100%;}
+.nav>div:last-child ul li{width: 100%;}/* 내용물이 작아서 다 나오게함 */
+
+/* 타이틀 */
+.tit{
+    padding: 5px 0;
+    position: relative;
+    text-align: center;
+}
+.tit h2{
+    font-family: "Nanum Brush Script", cursive;
+    font-size: 40px; color: #0093dd;
+}
+.tit .btn{
+    width: 60px;height: 60px;
+    border-radius: 50%;
+    background-color: #3192bf;
+    color: #fff; font-size: 35px;
+    position: absolute; right: 0; top: 5px;
+    /* 💙가운데정렬 여러가지 방밥 */
+    /* display: flex; justify-content: center; align-items: center; */
+    /* line-height: 60px; */
+    display: grid; place-items: center;
+}
+
+/* 콘텐츠 */
+.column{
+    border-bottom: 1px solid #dbdbdb;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.column .col_tit{
+    font-size: 20px;color: #2f7fa6;
+    padding: 5px;
+}
+.column .col_desc{
+    color: #878787;
+    border-bottom: 1px solid #dbdbdb;
+    /* W3S에서 border-style검색 */
+    margin-bottom: 15px;
+}
+.column.col3,
+.column.col6,
+.column.col9{border-bottom: none;}
+
+/* 메뉴 */
+.col1 .menu{}
+.col1 .menu ul{}
+.col1 .menu ul li{}
+.col1 .menu ul li a{
+    display: block; font-size: 16px; 
+    color: #878787; text-transform: uppercase;
+    border-bottom: 1px solid #dbdbdb;
+    display: flex; justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    transition: 0.5s;
+    
+}
+.col1 .menu ul li a:hover{
+    box-shadow: inset 180px 0px rgba(23, 121, 163, 0.9);
+    color: #fff;
+    background-color: rgba(26,130,174,0.9);
+}
+.col1 .menu ul li a i{}
+
+/* 게시판1 */
+.notice1{position: relative;}
+.col2 h5{ font-size: 14px; color: #2f7fa6;
+padding-bottom: 5px;
+}
+.notice1 ul{}
+.notice1 ul li{
+    /* 한줄 말줄임말 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* 한줄 말줄임말 */
+    padding-left: 8px;
+    position: relative;
+    
+}
+.notice1 ul li::before{
+    content: ""; 
+    background-color: #4492e2;
+    width: 3px; height: 3px;
+    position: absolute;
+    left: 0; top: 8px;
+}
+.notice1 ul li a{}
+.more{position: absolute; top: 7px; right: 0; 
+    color: #878787; font-size: 10px;}
+.more i{}
+
+
+/* 게시판2 */
+.notice2{position: relative;}
+.notice2 h5{}
+.notice2 ul{}
+.notice2 ul li{
+    /* 2줄 이상 말줄임말 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical ;
+    -webkit-line-clamp: 2;
+    /* end 2줄 이상 말줄임말 */
+    position: relative;
+    padding-left: 8px;
+    margin-bottom: 5px;
+}
+.notice2 ul li::before{
+    content: ""; width: 3px; height: 3px; 
+    background-color: #449ce2;
+    position: absolute; top: 8px; left: 0;
+}
+.notice2 ul li a{}
+
+/* col3_blog3 */
+.blog2{margin-top: 15px;}
+.blog2 img{
+    background: url(../images/blog1_@1.jpg);
+    background-size: cover;
+}
+.blog2 .img-retina{
+    padding: 30px;
+    color: #fff;
+    text-align: center;
+}
+@media only screen and (-webkit-min-device-pixel-ratio:2),
+        only screen and (min-device-pixel-ratio:2),
+        only screen and (min-resolution:2){/* 해상도가 2일때는 밑에 이미지로 바꾸겠다. */
+            .blog2 .img-retina{
+                background: url(../images/blog3_@3.jpg);
+                background-size: cover;
+            }
+        }
+
+
+/* col4_이미지 슬라이드 */
+.col4{padding-bottom: 30px;}
+.slider{}
+/* ❗❗.slider>div{} - slick을 했을 때 '내 밑에 바로 자식이라는 꺽쇠(>)'를 쓰면 안됨❗❗
+div밑에 내가 생성하지 않은 button 등 다른 클래스가 생겼기 때문.
+slick은 항상 개발자 모드에서 확인해야한다. ✨.slick_slide가 전체를 부르는 클래스임 */
+.slider .slick_slide{}
+.slider figure{position: relative;}
+
+.slider figure img{}
+.slider figure figcaption{
+    position: absolute; bottom: 0; left: 0;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* padding이 100%안에 들어오게 */
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 18px;
+}
+
+/* 🍏text뒤따라오게 하기 */
+.slider figure figcaption em{
+    display: block;/* 한 줄에 나혼자 있게 block처리 */
+    transform: translateX(50px);
+    transition: 0.9s 0.2s;
+}
+.slider .slick-slide.slick-active figure figcaption em{
+    transform: translateX(0px);
+}
+
+.slider figure figcaption span{
+    font-size: 16px;
+    display: block;/* 말 줄임말이 적용되도록 span을 block처리 */
+    /* 말 줄일말 세트 */
+    overflow: hidden;
+    white-space: nowrap;/* 부모의 영역을 벗어나더라도 계속 적어라 */
+    text-overflow: ellipsis;
+    opacity: 0; 
+    transform: translateX(50px);
+    transition: 0.9s 0.4s;
+}
+
+.slider .slick-slide.slick-active figure figcaption span{
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.slider .slick-arrow{
+    position: absolute; bottom: -35px;
+    z-index: 20;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; font-size: 0; color: #5dbdef;
+    background: none;
+}
+.slider .slick-prev.slick-arrow{left: 0;}
+.slider .slick-prev::before{content: "\f053";font-size: 30px;}
+
+.slider .slick-next.slick-arrow{right: 0;}
+.slider .slick-next::before{content: "\f054";font-size: 30px;}
+.slider .slick-dots{
+    position: absolute;
+    left: 0; bottom: -18px;
+    width: 100%;
+    display: flex; gap: 10px;
+    justify-content: center;
+}
+.slider .slick-dots button{/* inline요소 중 img,button은 공간인식함 */
+    font-size: 0;
+    width: 15px;height: 15px;
+    background-color: #5dbfeb;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.slider .slick-dots .slick-active button{
+    background-color: #2b91c8;
+    width: 25px;
+    border-radius: 10px;
+}
+
+/* col5 lightGallery */
+.square{display: flex; flex-wrap: wrap;}
+.square a{/* flex를 주면 자식이 block요소로 됨 */
+    width: 19%; 
+    position: relative;
+    overflow: hidden;
+    margin: 0.5%;/* ⭐margin과 padding의 %기준은 부모의 너비. 위아래(높이)는 안바뀜⭐ */
+}
+.square a img{width: 100%;display: block;}/* 이미지가 inline요소라서 빈공간이 생김 */
+.square a em{
+    position: absolute;/* 마우스 올리면 밑에서 나타나게 할 것임 */
+    left: 0;bottom: -25px;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+}
+.square a:hover em{bottom: 0;}
+.square a:nth-child(1):hover img{filter: blur(2px);}
+.square a:nth-child(2):hover img{filter: brightness(50%);}/* 명도 */
+.square a:nth-child(3):hover img{filter: contrast(10%);}/* 대비 */
+.square a:nth-child(4):hover img{filter: grayscale(100%);}/* 회색조(흑백사진) */
+.square a:nth-child(5):hover img{filter: hue-rotate(307deg);}/* 색조 */
+.square a:nth-child(6):hover img{filter: invert(100%);}/* 반대되는 색 */
+.square a:nth-child(7):hover img{filter: opacity(50%);}
+.square a:nth-child(8):hover img{filter: saturate(150%);}/* 채도(색의 강도) */
+.square a:nth-child(9):hover img{filter: sepia(200%);}/* 적갈색 */
+.square a:nth-child(10):hover img{filter: sepia(200%) hue-rotate(307deg);}/* mix */
+
+/* col6 video */
+.video{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;/* <----- 16 : 9 = 100% : x (자식한테 줘도 상관x)*/
+}
+.video iframe{
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* col7 card */
+.card{
+    perspective: 600px;/* 600px떨어져서 보겠다(=카메라) */
+    position: relative;
+}
+.card .front{
+    position: relative;
+    z-index: 2;/* z-index가 먹히려면 position이 필요함 */
+    transition: 0.5s;
+    transform-style: preserve-3d;
+}
+.card .front img{display: block;}
+.card .back{
+    width: 100%;height: 100%;
+    position: absolute;left: 0;top: 0;
+    display: grid;
+    place-items: center;
+    background-color: #4038dc;
+    z-index: 1;
+    transform: rotateY(-180deg);
+    transition: 0.5s;
+    transform-style: preserve-3d;
+}
+.card .back i{color: #fff;font-size: 20px;}
+
+.card:hover .front{transform: rotateY(180deg);}
+.card:hover .back{transform: rotateY(0deg);z-index: 2;}
+
+/* col8 card2 */
+.card2{position: relative; perspective: 600px;}
+
+.card2 figure{transform-style: preserve-3d;}
+.card2 img{display: block;}
+.card2 figcaption{
+    position: absolute;left: 50%;top: 50%;
+    transform: translate(-50%,-50%) translateZ(100px);
+    background-color: rgba(0,0,0,0.4);
+    color: #fff; text-align: center;
+    padding: 3px 0;
+}
+
+.card2 .front{
+    position: relative;
+    z-index: 2;/* z-index가 먹히려면 position이 필요함 */
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;/* 뒤집어졌을때 뒷면이 안보이게함 */
+}
+.card2 .back{
+    width: 100%;height: 100%;
+    position: absolute;left: 0;top: 0;
+    display: grid;
+    place-items: center;
+    background-color: #4038dc;
+    z-index: 1;
+    transform: rotateY(-180deg);
+    transition: 0.5s;
+    transform-style: preserve-3d;
+}
+.card2:hover .front{transform: rotateY(180deg);}
+.card2:hover .back{transform: rotateY(0deg);z-index: 2;}
+
+/* col9 card3 */
+.card3{position: relative; overflow: hidden;}
+.card3 figure{}
+.card3 figure img{}
+.card3 figure figcaption{
+    position: absolute; left: 50%;top: 50%;
+    transform: translate(200%,-50%) rotate(180deg);
+    width: 100px; height: 100px;
+    background-color: black;
+    color: #fff;
+    border-radius: 50%;
+    display: grid;
+    text-align: center;
+    align-items: center;
+    transition: 0.3s;
+}
+.card3:hover figure figcaption{transform: translate(-50%,-50%) rotate(0deg);}
+.card3 figure figcaption em{display: block;}
+
+
+/* footer */
+.footer{padding: 30px 0;}
+.footer ul{
+    display: flex; gap: 10px;
+    justify-content: center;
+}
+.footer ul li{}
+.footer ul li a{}
+.footer address{text-align: center;padding-top: 15px;}
+.footer address strong{font-weight: bold;}
+
+
+
+
+
+
+/* ////////////////////미디어쿼리//////////////////// */
+/* 화면의 넓이가 1220px보다 작을 때 */
+@media(max-width:1024px){
+    .square a{width: 32.3333%;}
+}
+@media(max-width:1220px){
+    .container{width: 100%;}
+    .row{padding: 0 15px;}
+    .header_menu{padding-right: 15px;}
+    .tit .btn{right:5px;}
+    .square a{width: 24%;}
+    /* 반응형- 5,10번째 지우기 */
+    .square a:nth-child(5n){display: none;}
+}
+
+@media(max-width:960px){   
+    .nav>div{width: 100%;float: none;}
+    .nav>div:last-child {width: 100%;}
+    /* 화면에는 아무 변화가 없지만 개발자 모드로 보면, div막내가 자기 자리를 100%차지하고 있다. */
+    .nav>div ul li{width: 33.3333%;}
+    .nav>div:last-child ul li{width: 33.3333%;}
+    #contents #cont_right{
+        border-top: 1px solid #dbdbdb;
+        width: 100%; display: flex;}
+    #contents .container{flex-wrap: wrap;}
+    #contents #cont_center{width: calc(100% - 250px);border-right: none;}
+    .col7, .col8{border-right: 1px solid #dbdbdb;border-bottom: none;}
+    .col9{border-right: none;}
+}
+
+@media(max-width:768px){
+    #contents #cont_left{width: 100%;border-left: none;}
+    #contents #cont_center{width: 100%;}
+    .footer ul{flex-wrap: wrap;justify-content: flex-start;}
+    .footer ul li{width: 48%;}
+}
+@media(max-width:600px){
+    #header{height: auto;}
+    .header_tit{display: none;}
+    .header_icon{display: none;}
+    .tit .btn{display: none;}
+    .tit h2{background-color: #CAF4FF;}
+    .column{padding: 0;margin: 0;}
+    .column .col_tit{display: none;}
+    .column .col_desc{display: none;}
+    .fa-angle-double-right:before{display: none;}
+    /* col1 */
+    .col1 .menu ul li a {padding:0}
+    .col1{border-bottom: none;}
+    /* 메뉴3개씩 정렬 */
+    .col1 .menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        border-top: 1px solid #dbdbdb;
+    }
+    .col1 .menu ul li{
+        width: 33.3333%;
+        border-right: 1px solid #dbdbdb;
+        box-sizing: border-box;
+    }
+    .col1 .menu ul li:nth-child(3n){border-right: none;}
+    .col1 .menu ul li a{justify-content: center;padding: 11px;}
+
+    .column.col2{background-color: #fff;}
+    .col4{border-top: 1px solid #dbdbdb;}
+    
+    #contents #cont_right .column{width: 50%;}
+    .column.col9{display: none;}
+    .slider figure figcaption{padding: 10px;}
+    .slider figure figcaption span{font-size: 14px;}
+    .square a{width: 49%;}
+    .square a:nth-child(5n){display: none;}
+}
+@media(max-width:480px){
+    .tit h2{font-size: 10vw;}
+}
+@media(max-width:320px){
+    .square a{width: 100%; margin-right: 0;margin-left: 0;}
+    #contents #cont_right{flex-wrap: wrap;}
+    #contents #cont_right .column{width: 100%;}
+    .footer ul li{width: 48%;}
+}
+
+
